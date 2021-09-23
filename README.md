@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# 😎 React Query con un Event Dispatcher
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="https://raw.githubusercontent.com/ger86/react-query-event-dispatcher/master/cover.jpg" alt="React Query con un Event Dispatcher">
 
-## Available Scripts
+## Descripción
 
-In the project directory, you can run:
+Este es el repositorio que he creado para el vídeo de mi canal: [¿Qué tal un event dispatcher para React Query?](https://youtu.be/lfr1NezEvmY).
 
-### `yarn start`
+El proyecto está escrito en TypeScript para que sea más fácil entender cómo funciona el Event Dispatcher y cómo podemos integrarlo con React Query. Sin embargo si trabajas con Javascript no te preocupes, basta con que elimines la sintaxis de TS para que todo te funcione del mismo modo.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Si nunca has trabajado con React Query te recomiendo que antes veas el vídeo [React Query. Versión 3](https://youtu.be/u6TuxMhQwNg) en el que explico los conceptos de esta librería cuyo uso se ha extendido muchísimo este último año.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### ¿Por qué un Event Dispatcher?
 
-### `yarn test`
+Esta idea se me ocurrió mientras trabajaba con un proyecto que empleaba **React Query** para gestionar el estado de las llamadas a la API.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Como sabéis, React Query nos permite cachear el resultado de las llamadas de modo que no sea necesario consultar la API una y otra vez cuando queremos acceder a los datos.
 
-### `yarn build`
+Sin embargo, siempre que usamos una caché tenemos que asegurarnos de que no estamos recuperando datos desactualizados. Por ejemplo, si usamos la API para recuperar la lista de usuarios y posteriormente actualizamos el nombre de uno de ellos, no queremos usar la llamada cacheada que contiene el email antiguo.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+React Query nos permite invalidar la caché gracias a que cada llamada está asociada a una clave. Sin embargo, ¿quién debe invalidar la caché? Si lo hacemos dentro del componente que nos permite editar un usuario estamos cargándole con una responsabilidad adicional. Si además tiene que limpiar la caché de varias llamadas, podemos terminar con un bloque de código gigante que a la larga será difícil de mantener (por ejemplo, si cambiamos el formato de nuestras claves tendremos que modificar este componente).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Por eso creo que el uso de un Event Dispatcher puede ser una solución muy adecuada para este problema. En el momento en que editamos el usuario, el componente lanzará un evento para notificar a quién lo deseé que el usuario ha sido editado de modo que podamos limpiar la caché dónde realmente tiene sentido hacerlo.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Apóyame
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Si te ha gustado, puedes invitarme a un cafelito en
+[☕️ Buy me a coffe](https://www.buymeacoffee.com/latteandcode)
