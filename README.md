@@ -1,6 +1,6 @@
 # 😎 React Query con un Event Dispatcher
 
-<img src="https://raw.githubusercontent.com/ger86/react-query-event-dispatcher/master/cover.jpg" alt="React Query con un Event Dispatcher">
+<img src="https://raw.githubusercontent.com/ger86/react-query-event-dispatcher/master/cover.jpeg" alt="React Query con un Event Dispatcher">
 
 ## Descripción
 
